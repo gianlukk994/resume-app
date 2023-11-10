@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_10_171410) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_10_180927) do
+  create_table "employment_experiences", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_employment_experiences_on_user_id"
+  end
+
   create_table "resumes", force: :cascade do |t|
     t.string "title"
     t.string "summary"
@@ -27,5 +38,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_10_171410) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "employment_experiences", "users"
   add_foreign_key "resumes", "users"
 end
