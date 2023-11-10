@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  context '#User' do
+  describe '#User' do
     subject { described_class.new(name: name, email: email) }
     let(:name) { 'Test' }
     let(:email) { 'test@test.com' }
@@ -33,6 +33,10 @@ RSpec.describe User, type: :model do
       it 'is invalid' do
         expect(subject).to_not be_valid
       end
+    end
+
+    it 'has many resumes' do
+      expect(described_class.reflect_on_association(:resumes).macro).to eq :has_many
     end
   end
 end
