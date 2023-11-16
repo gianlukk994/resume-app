@@ -18,5 +18,9 @@ RSpec.describe Resume, type: :model do
     it 'belongs to users' do
       expect(described_class.reflect_on_association(:user).macro).to eq :belongs_to
     end
+
+    it 'has many resume_employment_experiences' do
+      expect(described_class.reflect_on_association(:resume_employment_experiences).macro).to eq :has_many
+    end
   end
 end
