@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_10_180927) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_16_090257) do
   create_table "employment_experiences", force: :cascade do |t|
     t.string "title"
     t.string "description"
@@ -20,6 +20,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_10_180927) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_employment_experiences_on_user_id"
+  end
+
+  create_table "resume_employment_experiences", force: :cascade do |t|
+    t.integer "resume_id", null: false
+    t.integer "employment_experience_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["employment_experience_id"], name: "index_resume_employment_experiences_on_employment_experience_id"
+    t.index ["resume_id", "employment_experience_id"], name: "index_experiences_on_resume", unique: true
+    t.index ["resume_id"], name: "index_resume_employment_experiences_on_resume_id"
   end
 
   create_table "resumes", force: :cascade do |t|
@@ -39,5 +49,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_10_180927) do
   end
 
   add_foreign_key "employment_experiences", "users"
+  add_foreign_key "resume_employment_experiences", "employment_experiences"
+  add_foreign_key "resume_employment_experiences", "resumes"
   add_foreign_key "resumes", "users"
 end
