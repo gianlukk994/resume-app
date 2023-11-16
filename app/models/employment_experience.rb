@@ -15,4 +15,6 @@
 #
 class EmploymentExperience < ApplicationRecord
   belongs_to :user
+
+  has_many :resume_employment_experiences
 end
