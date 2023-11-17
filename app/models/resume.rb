@@ -15,4 +15,8 @@ class Resume < ApplicationRecord
   belongs_to :user
 
   has_many :resume_employment_experiences
+  has_many :resume_skills
+
+  has_many :employment_experiences, through: :resume_employment_experiences
+  has_many :skills, through: :resume_skills
 end
