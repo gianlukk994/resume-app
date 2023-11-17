@@ -53,6 +53,14 @@ RSpec.describe User, type: :model do
       it 'has many employment_experiences' do
         expect(described_class.reflect_on_association(:employment_experiences).macro).to eq :has_many
       end
+
+      it 'has many user_skills' do
+        expect(described_class.reflect_on_association(:user_skills).macro).to eq :has_many
+      end
+
+      it 'has many skills' do
+        expect(described_class.reflect_on_association(:skills).macro).to eq :has_many
+      end
     end
   end
 end
