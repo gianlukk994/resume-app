@@ -22,5 +22,17 @@ RSpec.describe Resume, type: :model do
     it 'has many resume_employment_experiences' do
       expect(described_class.reflect_on_association(:resume_employment_experiences).macro).to eq :has_many
     end
+
+    it 'has many employment_experiences' do
+      expect(described_class.reflect_on_association(:employment_experiences).macro).to eq :has_many
+    end
+
+    it 'has many resume_skills' do
+      expect(described_class.reflect_on_association(:resume_skills).macro).to eq :has_many
+    end
+
+    it 'has many skills' do
+      expect(described_class.reflect_on_association(:skills).macro).to eq :has_many
+    end
   end
 end
