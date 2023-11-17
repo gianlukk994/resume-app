@@ -48,6 +48,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_16_111145) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "user_skills", force: :cascade do |t|
+    t.integer "skill_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["skill_id", "user_id"], name: "index_user_skills_on_skill_id_and_user_id", unique: true
+    t.index ["skill_id"], name: "index_user_skills_on_skill_id"
+    t.index ["user_id"], name: "index_user_skills_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -59,4 +69,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_16_111145) do
   add_foreign_key "resume_employment_experiences", "employment_experiences"
   add_foreign_key "resume_employment_experiences", "resumes"
   add_foreign_key "resumes", "users"
+  add_foreign_key "user_skills", "skills"
+  add_foreign_key "user_skills", "users"
 end
